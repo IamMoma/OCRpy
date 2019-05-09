@@ -1,8 +1,7 @@
-# OCR-pricture-text-picture
+# OCRpy
 
-I want to build the program that recognizes text and symbols from picture (OCR program) then lets update the text and convert text to image again. In other words - image text update.
-
-Will be using Pipenv.
+I will be creating an OCR (Optical character recognition) program for text recognition from images.
 
 Libraries:
-1. Tesseract
+1. OpenCV for preprocessing the image.
+2. Tesseract engine will be applied after.
