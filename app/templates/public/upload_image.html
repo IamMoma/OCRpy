@@ -26,11 +26,15 @@
 
             </form>
 
-            <h1>Result:</h1>
-            {% if img_src %}
-            <img src="{{ img_src }}">
-            {% endif %}
+            <hr>
 
+            <h1>Result:</h1>
+            <hr>
+            <h2>Image Uploaded:</h2>
+
+            <img style="max-width: 250px;" src="{{ url_for('static', filename=filename) }}">
+
+            <h2>Text:</h2>
             {% if extracted_text %}
             <p> The extracted text from the image above is: <b> {{ extracted_text }} </b></p>
 
