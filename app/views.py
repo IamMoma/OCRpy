@@ -19,8 +19,8 @@ def ocr_core(filename):
     """
     text = pytesseract.image_to_string(Image.open(filename))  # We'll use Pillow's Image class to open the image and pytesseract to detect the string in the image
     return text  # Then we will print the text in the image
-    
-app.config["IMAGE_UPLOADS"] = r".\app\static\img\uploads"
+
+app.config["IMAGE_UPLOADS"] = "static/"
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 app.config["MAX_IMAGE_FILESIZE"] = 0.5 * 1024 * 1024
 
@@ -73,10 +73,8 @@ def upload_image():
                 if allowed_image(image.filename):
                     filename = secure_filename(image.filename)
 
-                    image.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
-
                     extracted_text=ocr_core(image)               
-                    return render_template("public/upload_image.html", msg='Successfully processed', extracted_text=extracted_text, img_src=app.config["IMAGE_UPLOADS"] + filename)
+                    return render_template("public/upload_image.html", msg='Successfully processed', extracted_text=extracted_text, filename=filename)
 
                 else:
                     print("That file extension is not allowed")
