@@ -1,5 +1,5 @@
-pipenv
 .vscode
 Pipfile
 Pipfile.lock
+env
     
