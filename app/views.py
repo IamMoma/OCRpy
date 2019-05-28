@@ -20,7 +20,7 @@ def ocr_core(filename):
     text = pytesseract.image_to_string(Image.open(filename))  # We'll use Pillow's Image class to open the image and pytesseract to detect the string in the image
     return text  # Then we will print the text in the image
 
-app.config["IMAGE_UPLOADS"] = "static/"
+app.config["IMAGE_UPLOADS"] = os.path.dirname(os.path.abspath(__file__))
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 app.config["MAX_IMAGE_FILESIZE"] = 0.5 * 1024 * 1024
 
@@ -41,6 +41,9 @@ def allowed_image(filename):
 
 
 def allowed_image_filesize(filesize):
+    """ 
+    image filesize 
+    """
 
     if int(filesize) <= app.config["MAX_IMAGE_FILESIZE"]:
         return True
@@ -59,6 +62,9 @@ def upload_image():
         if request.files:
 
             if "filesize" in request.cookies:
+                """
+                checking the filesize
+                """
 
                 if not allowed_image_filesize(request.cookies["filesize"]):
                     print("Filesize exceeded maximum limit")
@@ -71,10 +77,28 @@ def upload_image():
                     return redirect(request.url)
 
                 if allowed_image(image.filename):
+                    """ creating the folder if it doesn't egzist """
                     filename = secure_filename(image.filename)
+                    target = os.path.join(app.config["IMAGE_UPLOADS"], "static/")
+                    print(target)
 
+                    if not os.path.isdir(target):
+                        os.mkdir(target)
+                    else:
+                        print("Couldn't create upload directory: {}".format(target))
+                    print(request.files.getlist("image"))
+                    for upload in request.files.getlist("image"):
+                        print(upload)
+                        print("{} is the file name".format(upload.filename))
+                        filename2 = upload.filename
+                        destination = "/".join([target, filename2])
+                        print ("Accept incoming file:", filename2)
+                        print ("Save it to:", destination)
+                        upload.save(destination)
+                  
+                    """image to text"""
                     extracted_text=ocr_core(image)               
-                    return render_template("public/upload_image.html", msg='Successfully processed', extracted_text=extracted_text, filename=filename)
+                    return render_template("public/upload_image.html", extracted_text=extracted_text, filename=filename)
 
                 else:
                     print("That file extension is not allowed")
