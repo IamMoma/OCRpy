@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 .vscode
 Pipfile
 Pipfile.lock
 env
+=======
+.vscode
+Pipfile
+Pipfile.lock
+env
+>>>>>>> 6c0075d25f9bffbffb5752ce6f755a0a9a62eac8
     

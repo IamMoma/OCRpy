@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Flask==1.0.2
 Jinja2==2.10.1
 lazy-object-proxy==1.4.1
@@ -5,3 +6,12 @@ Pillow==6.0.0
 pytesseract==0.2.6
 Werkzeug==0.15.2
 wrapt==1.11.1
+=======
+Flask==1.0.2
+Jinja2==2.10.1
+lazy-object-proxy==1.4.1
+Pillow==6.0.0
+pytesseract==0.2.6
+Werkzeug==0.15.2
+wrapt==1.11.1
+>>>>>>> 6c0075d25f9bffbffb5752ce6f755a0a9a62eac8
