@@ -3,6 +3,7 @@
 ## > About
 
 ![Markdown Logo](https://www.scantopdf.com/images/default-source/desktop-assets/solutions_ocr.png?sfvrsn=e1482150_2) 
+
 This is my first project with Python. Hope you find it useful!
 
 OCR - what is it? - https://searchcontentmanagement.techtarget.com/definition/OCR-optical-character-recognition
