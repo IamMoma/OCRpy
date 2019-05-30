@@ -1,5 +1,4 @@
 # OCRpy - Optical Character Recognition App with Python
-<hr>
 
 ## > About
 
