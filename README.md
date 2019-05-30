@@ -1,6 +1,6 @@
-# OCRpy
+# OCRpy - Optical Character Recognition app with Python
 
-I will be creating an OCR (Optical character recognition) program for text recognition from images.
+As my first ever coding project I have created OCR (Optical character recognition) program for text recognition from images.
 
 Libraries:
 1. OpenCV for preprocessing the image.
