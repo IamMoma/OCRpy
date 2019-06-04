@@ -6,6 +6,10 @@ import os
 
 from werkzeug.utils import secure_filename
 
+
+"""
+>OCR function and imports
+"""
 try:
     from PIL import Image
 except ImportError:
@@ -20,10 +24,21 @@ def ocr_core(filename):
     text = pytesseract.image_to_string(Image.open(filename))  # We'll use Pillow's Image class to open the image and pytesseract to detect the string in the image
     return text  # Then we will print the text in the image
 
+
+
+"""
+>Specifications for images and the upload path
+"""
+
 app.config["IMAGE_UPLOADS"] = os.path.dirname(os.path.abspath(__file__))
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 app.config["MAX_IMAGE_FILESIZE"] = 0.5 * 1024 * 1024
 
+
+
+"""
+>Functions for images' restrictions
+"""
 def allowed_image(filename):
     """
     allowed image format
@@ -49,6 +64,11 @@ def allowed_image_filesize(filesize):
         return True
     else:
         return False
+
+
+"""
+>MAIN - server with ocr
+"""
 
 @app.route("/", methods=["GET", "POST"])
 
@@ -98,7 +118,7 @@ def upload_image():
                   
                     """image to text"""
                     extracted_text=ocr_core(image)               
-                    return render_template("public/upload_image.html", extracted_text=extracted_text, filename=filename)
+                    return render_template("upload_image.html", extracted_text=extracted_text, filename=filename)
 
                 else:
                     print("That file extension is not allowed")
@@ -106,4 +126,4 @@ def upload_image():
 
                 
     elif request.method == 'GET':
-        return render_template('public/upload_image.html')
+        return render_template('upload_image.html')
