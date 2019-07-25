@@ -54,7 +54,7 @@ Install requirements. If you are using pipenv do as follows:
 $ pipenv install -r requirements.txt
 ```
 
-Sent up FLASK_APP:
+Set up FLASK_APP:
 
 ```bash
 $ export FLASK_APP=app.py
